@@ -1,4 +1,4 @@
-Puis faire les lignes de commande suivantes:
+Exécuter les lignes de commande suivantes:
 
 => `py -3 -m venv bowling_env`
 
