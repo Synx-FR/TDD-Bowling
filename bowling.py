@@ -1,3 +1,8 @@
 
-def mafonction():
-    pass
+class Scorer():
+    def __init__(self):
+        pass
+
+    def mafonction():
+        pass
+
