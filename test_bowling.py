@@ -1,4 +1,6 @@
-import bowling
+from bowling import Joueur
+from bowling import Scorer
+from bowling import Partie
 
 """
     Périphérique de gestion des quilles (input)
@@ -12,13 +14,26 @@ import bowling
 """
 
 # Etape 1 le scorer accepte un nouveau tir et calcule a tout moment le score.
-# on ne tient pas compte des spare et strike et une partie est infinie
+#       on ne tient pas compte des spare et strike et une partie est infinie
 
-def test_1():
-    assert False
+class TestJoueur():
 
-def test_2():
-    assert False
+    def setup(self):
+        self.joueur = Joueur()
 
-def test_3():
-    assert False
+    def teardown(self):
+        del self.joueur
+
+    def test_etape_1_score_debut_joueur_vaut_zero(self):
+        assert self.joueur.get_score() == 0
+
+    def test_etape_1_joueur_recoit_premier_tir(self):
+        self.joueur.get_shoot(5)
+        assert self.joueur.get_score() == 5
+
+    def test_etape_1_joueur_recoit_deux_premiers_tir(self):
+        self.joueur.get_shoot(5)
+        self.joueur.get_shoot(10)
+        assert self.joueur.get_score() == 15
+
+    
