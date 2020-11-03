@@ -1,32 +1,53 @@
 
 class Scorer():
     def __init__(self):
-        pass
+        self._is_first_shoot = True
+        self._prev_spare = False
+        self._prev_strike = 0
+        self._score = 0
+        self._frame_score = 0
 
-    def calculate_total_score(self, shoots_list: []):
-        score = 0
-        frame_score = 0
-        is_first_shoot = True
-        prev_spare = False
+    def calculate_total_score(self, shoots_list: []) -> int:
+        self._score = 0
+        self._frame_score = 0
+        self._is_first_shoot = True
+        self._prev_spare = False
+        self._prev_strike = 0
 
         for shoot in shoots_list:
-            score += shoot
-            if is_first_shoot:
-                frame_score = shoot
-                if prev_spare:
-                    score += shoot
-                    prev_spare = False
-            else:
-                frame_score += shoot
-                if frame_score == 10:
-                    prev_spare = True
+            self._calculate_shoot(shoot)
+        
+        return self._score
 
-            is_first_shoot = not is_first_shoot
-        return score
+    def _calculate_shoot(self, shoot: int):
+        self._score += shoot
+        if self._is_first_shoot:
+            self._frame_score = shoot
+            if shoot == 10:
+                self._prev_strike = 2
+                self._is_first_shoot = False
+            elif self._prev_spare:
+                self._score += shoot
+                self._prev_spare = False
+            elif self._prev_strike > 0:
+                self._add_strike_bonus(shoot)
 
-class Partie():
-    def __init__(self):
-        pass
+        else:
+            self._frame_score += shoot
+            if self._frame_score == 10:
+                self._prev_spare = True
+            elif self._prev_strike > 0:
+                self._add_strike_bonus(shoot)
+
+        self._is_first_shoot = not self._is_first_shoot
+
+    def _add_strike_bonus(self, shoot: int):
+        self._score += shoot
+        self._prev_strike = self._prev_strike - 1
+
+# class Partie():
+#     def __init__(self):
+#         pass
 
 class Joueur():
     def __init__(self):
