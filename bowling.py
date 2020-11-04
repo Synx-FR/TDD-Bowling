@@ -3,7 +3,6 @@ STRIKE = 10
 class Scorer():
     def __init__(self):
         self._is_first_shoot = True
-        self._prev_spare = False
         self._frame_score = []
 
     def calculate_total_score(self, shoots_list: []) -> int:
