@@ -21,6 +21,8 @@ from bowling import Scorer
 
 # Etape 3 : gestion du strike
 
+# Etape 4 : une partie dure 10 frames
+
 class TestJoueur():
 
     def setup(self):
